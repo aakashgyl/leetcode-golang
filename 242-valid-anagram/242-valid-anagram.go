@@ -3,32 +3,15 @@ func isAnagram(s string, t string) bool {
         return false
     }
     
-    letterCount := make(map[byte]int)
+    letterCount := make([]int, 26)
     
-    // process s
-    for _, char := range []byte(s) {
-        if count, ok := letterCount[char]; ok {
-            letterCount[char] = count + 1
-        } else {
-            letterCount[char] = 1   
-        }
-    }
-
-    // decrement count
-    for _, char := range []byte(t) {
-        if count, ok := letterCount[char]; ok {
-            if count == 0 { // if char occurs more in t
-                return false
-            }
-            letterCount[char] = count - 1
-        } else {    // char present in t but not in s
-            return false
-        }
+    for i := range s {
+        letterCount[s[i]-'a']++
+        letterCount[t[i]-'a']--
     }
     
-    // all counts should be zero
-    for _, count := range letterCount {
-        if count != 0 {
+    for _, val := range letterCount {
+        if val != 0 {
             return false
         }
     }
