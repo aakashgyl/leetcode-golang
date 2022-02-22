@@ -6,7 +6,6 @@ func isPalindrome(s string) bool {
     s = strings.ToLower(s)
     
     for start < end {
-        fmt.Println(start, end)
         if !isAlphaNum(s[start]) {
             start++
             continue
@@ -29,12 +28,12 @@ func isPalindrome(s string) bool {
 }
 
 func isAlphaNum(char byte) bool {
-    if char >= 48 && char <= 57 || char >= 65 && char <= 90 || char >= 97 && char <= 122 {
-        return true
-    }
-    
-    // if char >= '0' && char <= '9' || char >= 'a' && char >= 'z' || char >= 'A' && char <= 'Z' {
+    // if char >= 48 && char <= 57 || char >= 65 && char <= 90 || char >= 97 && char <= 122 {
     //     return true
-    // } 
+    // }
+    
+    if char >= '0' && char <= '9' || char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' {
+        return true
+    } 
     return false
 }
