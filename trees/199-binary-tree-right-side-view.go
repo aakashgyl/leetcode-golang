@@ -25,11 +25,10 @@ func (q *Queue) Dequeue() *TreeNode {
 	return front
 }
 
-func levelOrder(root *TreeNode) [][]int {
-	var output [][]int
-
+func rightSideView(root *TreeNode) []int {
+	var output []int
 	if root == nil {
-		return [][]int{}
+		return output
 	}
 
 	q := Queue{}
@@ -37,11 +36,13 @@ func levelOrder(root *TreeNode) [][]int {
 
 	for len(q) != 0 {
 		levelCount := len(q)
-		var levelData []int
 
 		for levelCount > 0 {
 			node := q.Dequeue()
-			levelData = append(levelData, (*node).Val)
+
+			if levelCount == 1 { // last node in the level
+				output = append(output, node.Val)
+			}
 
 			if (*node).Left != nil {
 				q.Enqueue((*node).Left)
@@ -49,10 +50,9 @@ func levelOrder(root *TreeNode) [][]int {
 			if (*node).Right != nil {
 				q.Enqueue((*node).Right)
 			}
+
 			levelCount--
 		}
-
-		output = append(output, levelData)
 	}
 
 	return output
