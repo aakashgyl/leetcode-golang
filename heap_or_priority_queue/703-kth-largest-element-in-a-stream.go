@@ -1,4 +1,4 @@
-package heap_or_priority_queue
+package main
 
 import "math"
 
